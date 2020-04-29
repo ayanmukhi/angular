@@ -18,6 +18,9 @@ export class CounselorBookingComponent implements OnInit {
   daysAvailable = new Array;
   time:string;
   location:string;
+  currDate = new Date();
+  minDate = new Date(this.currDate.getFullYear(), this.currDate.getMonth(),this.currDate.getDate() + 1);
+  maxDate = new Date(this.currDate.getFullYear() + 1, this.currDate.getMonth(), this.currDate.getDate());
 
   //building the form
   bookingForm = this.fb.group({
@@ -28,7 +31,7 @@ export class CounselorBookingComponent implements OnInit {
   //date filter
   myFilter = (d: Date | null): boolean => {
     const day = (d || new Date()).getDay();
-    if(this.daysAvailable.indexOf(day) == -1) {
+    if(this.daysAvailable.indexOf(day) !== -1) {
       return true;
     }
     else {
@@ -106,7 +109,6 @@ export class CounselorBookingComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
     this.data.forEach((value) => {
       this.counselings.push(value.Type);
     }); 

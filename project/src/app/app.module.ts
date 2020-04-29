@@ -17,7 +17,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { FaqComponent } from './faq/faq.component';
 import { CounselorBookingComponent } from './counselor-booking/counselor-booking.component';
 import { MatDialogModule } from "@angular/material/dialog";
-
+import { MatListModule, MatList } from "@angular/material/list";
+import { CounselorPersonalDetailsComponent } from './counselor-personal-details/counselor-personal-details.component';
 
 
 //angular material
@@ -31,11 +32,18 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from "@angular/material/grid-list";
-import { MatRadioModule } from "@angular/material/radio";
+import { MatRadioModule, MAT_RADIO_DEFAULT_OPTIONS } from "@angular/material/radio";
+import { MatExpansionModule } from "@angular/material/expansion";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 
 //interceptor
 import { MyInterceptor } from './shared/interceptor';
+import { DatePipe } from '@angular/common';
+
+
 
 @NgModule({
   declarations: [
@@ -49,7 +57,8 @@ import { MyInterceptor } from './shared/interceptor';
     CounselorsComponent,
     AboutUsComponent,
     FaqComponent,
-    CounselorBookingComponent
+    CounselorBookingComponent,
+    CounselorPersonalDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -68,13 +77,23 @@ import { MyInterceptor } from './shared/interceptor';
     MatGridListModule,
     MatDialogModule,
     MatRippleModule,
-    MatRadioModule
+    MatRadioModule,
+    MatExpansionModule,
+    MatTabsModule,
+    MatDividerModule,
+    MatListModule,
+    MatTooltipModule
     
   ],
   entryComponents: [
     CounselorBookingComponent
   ],
   providers: [
+    DatePipe,
+    {
+      provide: MAT_RADIO_DEFAULT_OPTIONS,
+      useValue: { color: 'primary' },
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: MyInterceptor,

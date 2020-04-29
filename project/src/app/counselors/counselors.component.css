@@ -3,6 +3,9 @@ mat-card-content {
 }
 
 .body {
+  position: absolute;
+  top: 14%;
+  left: 10%;
     margin-left: auto;
     margin-right: auto;
     width: 80%;

@@ -9,9 +9,15 @@ import * as jwt_decode from 'jwt-decode';
 })
 export class HeaderComponent implements OnInit {
 
+  loggedInUser:string;
+  loggedInUserImage:string;
+
   constructor(private _route: Router) { }
 
   ngOnInit() {
+    if( localStorage.getItem('jwt')) {
+      this.loggedInUser = JSON.parse(jwt_decode(localStorage.getItem("jwt"))).name;
+    }
   }
 
   checkUserLoggedIn() {
@@ -29,7 +35,7 @@ export class HeaderComponent implements OnInit {
   openProfile() {
     let token = JSON.parse(jwt_decode(localStorage.getItem('jwt')));
     if(token.role == "counselor") {
-      this._route.navigate(['counselor-profile']);
+      this._route.navigate([{ outlets: { mainOutlet: ['counselor-profile'] } }]);
     }
     else {
       this._route.navigate(['seeker-profile']);

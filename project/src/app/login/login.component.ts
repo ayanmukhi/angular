@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   lowercase:boolean;
   number:boolean;
 
-  constructor( private fb: FormBuilder, private _apiservice: ApiService, private route: Router) { }
+  constructor( private fb: FormBuilder, private _apiservice: ApiService, private _route: Router) { }
   
 
 
@@ -54,20 +54,19 @@ export class LoginComponent implements OnInit {
   }
 
 
-
+  //save token to local storage
   saveData(data) {
     this.userData = data;
     localStorage.setItem('jwt', this.userData.token);
-    console.log("before routing " + this.userData.token);
-    if( this.userData.data.role == "counselor") {
-      this.route.navigate(['/counselor-profile']);
-    }
-    else {
-      this.route.navigate(['/seeker-profile']);
-    }
+    localStorage.setItem('image', this.userData.data);
+    this._route.navigate([{ outlets: { mainOutlet: [''] } }]);
   }
 
   ngOnInit() {
+  }
+
+  register() {
+    this._route.navigate([{ outlets: { mainOutlet: ['register'] } }]);
   }
 
 }

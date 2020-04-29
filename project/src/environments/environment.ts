@@ -4,7 +4,8 @@
 
 export const environment = {
   loginApi: 'http://filemaker/public/index.php/api/v1/login',
-  getUsersApi: 'http://filemaker/public/index.php/api/v1/users',
+  getUsersApi: 'http://filemaker/public/index.php/api/v1/users/counselors',
+  userApi: 'http://filemaker/public/index.php/api/v1/users',
   production: false
 };
 
