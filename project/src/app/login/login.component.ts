@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
     this.userData = data;
     localStorage.setItem('jwt', this.userData.token);
     localStorage.setItem('image', this.userData.data);
-    this._route.navigate([{ outlets: { mainOutlet: [''] } }]);
+    this._route.navigate([{ outlets: { mainOutlet: null } }]);
   }
 
   ngOnInit() {
